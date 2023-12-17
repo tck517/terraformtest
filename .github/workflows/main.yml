@@ -1,8 +1,7 @@
 name: 'Terraform GitHub Actions'
 on:
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   terraform:
