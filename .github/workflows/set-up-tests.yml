@@ -1,4 +1,4 @@
-name: 'Pull Request Created'
+name: 'Set Up Tests'
 
 on:
   pull_request:
