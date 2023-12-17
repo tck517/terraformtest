@@ -1,6 +1,8 @@
-name: 'Terraform GitHub Actions'
+name: 'Pull Request Created'
 
-on: pull_request
+on:
+  pull_request:
+    branches: [ main ]
 
 jobs:
   terraform:
@@ -15,19 +17,19 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init --upgrade
+        run: terraform init
 
       - name: Terraform Validate
-        run: terraform validate -no-color
+        run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -no-color
+        run: terraform plan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}        
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -no-color
+        run: terraform apply -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
