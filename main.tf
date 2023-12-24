@@ -26,7 +26,7 @@ variable "PR_NUMBER" {
 
 output "PR_NUMBER" {
   description = "The pull request number"
-  value       = "${var.PR_NUMBER}"
+  value       = "xxx"
 }
 
 resource "aws_dynamodb_table" "dynamo_test" {
