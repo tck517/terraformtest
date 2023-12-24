@@ -65,7 +65,7 @@ jobs:
           table: academy_table-PR-${{ github.event.pull_request.number }}
           item: |
             {
-              key: "1",
+              ID: "1",
               name: "Simple Machines BJJ",
               email: "contact@simplemachinesbjj.com"
             }
