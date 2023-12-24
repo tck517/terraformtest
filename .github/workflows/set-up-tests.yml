@@ -53,8 +53,18 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Insert academy data
+        uses: mooyoul/dynamodb-actions@v1.2.1
         env:
-          TABLE_NAME: academy_table-PR-${{ github.event.pull_request.number }}
-          ITEM: '{"id": {"N": "1"}, "name": {"S": "John Doe"}, "email": {"S": "john.doe@example.com"}}'
-        run: |
-          aws dynamodb put-item --table-name $TABLE_NAME --item $ITEM
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:
+          operation: put
+          region: us-east-1
+          table: academy_table-PR-${{ github.event.pull_request.number }}
+            {
+              key: "1",
+              name: "Simple Machines BJJ",
+              email: "contact@simplemachinesbjj.com",
+            }
