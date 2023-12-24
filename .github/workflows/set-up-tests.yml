@@ -16,6 +16,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Echo PR Number
+        run: echo "PR Number is ${{ github.event.number }}"
+
       - name: Terraform Init
         run: terraform init --upgrade
         env:
@@ -28,12 +31,12 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}                
 
-      - name: Terraform Plan
-        run: terraform plan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          PR_NUMBER: ${{ github.event.number }}
+      # - name: Terraform Plan
+      #   run: terraform plan
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     PR_NUMBER: ${{ github.event.number }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
