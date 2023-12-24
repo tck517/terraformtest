@@ -54,7 +54,7 @@ jobs:
 
       - name: Insert academy data
         env:
-          TABLE_NAME: academy_table-PR-${github.event.pull_request.number}
+          TABLE_NAME: academy_table-PR-${{ github.event.pull_request.number }}
           ITEM: '{"id": {"N": "1"}, "name": {"S": "Simple Machines BJJ"}, "email": {"S": "contact@simplemachinesbjj.com"}}'
         run: |
           aws dynamodb put-item --table-name $TABLE_NAME --item $ITEM
