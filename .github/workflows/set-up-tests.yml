@@ -63,8 +63,9 @@ jobs:
           operation: put
           region: us-east-1
           table: academy_table-PR-${{ github.event.pull_request.number }}
+          item: |
             {
               key: "1",
               name: "Simple Machines BJJ",
-              email: "contact@simplemachinesbjj.com",
+              email: "contact@simplemachinesbjj.com"
             }
