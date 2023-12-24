@@ -26,11 +26,11 @@ variable "PR_NUMBER" {
 
 output "PR_NUMBER" {
   description = "The pull request number"
-  value       = "xxx"
+  value       = "var.PR_NUMBER"
 }
 
 resource "aws_dynamodb_table" "dynamo_test" {
-  name           = "dynamo_test-PR-8"
+  name           = "dynamo_test-PR-${var.PR_NUMBER}"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "ID"
