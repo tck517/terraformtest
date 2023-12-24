@@ -19,8 +19,18 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "PR_NUMBER" {
+  description = "The pull request number"
+  type        = string
+}
+
+output "PR_NUMBER" {
+  description = "The pull request number"
+  value       = "var.PR_NUMBER"
+}
+
 resource "aws_dynamodb_table" "dynamo_test" {
-  name           = "dynamo_test"
+  name           = "dynamo_test-PR-${var.PR_NUMBER}"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "ID"
