@@ -36,14 +36,14 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_PR_NUMBER: ${{ github.event.number }}
+          TF_VAR_PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_PR_NUMBER: ${{ github.event.number }}
+          TF_VAR_PR_NUMBER: ${{ github.event.pull_request.number }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -54,7 +54,7 @@ jobs:
 
       - name: Insert academy data
         env:
-          TABLE_NAME: 'academy_table-PR-${github.event.number}'
+          TABLE_NAME: academy_table-PR-${github.event.pull_request.number}
           ITEM: '{"id": {"N": "1"}, "name": {"S": "Simple Machines BJJ"}, "email": {"S": "contact@simplemachinesbjj.com"}}'
         run: |
           aws dynamodb put-item --table-name $TABLE_NAME --item $ITEM
