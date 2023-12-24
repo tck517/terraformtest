@@ -30,7 +30,7 @@ output "PR_NUMBER" {
 }
 
 resource "aws_dynamodb_table" "dynamo_test" {
-  name           = "dynamo_test-PR-${var.PR_NUMBER}"
+  name           = "dynamo_test-PR-8"
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "ID"
