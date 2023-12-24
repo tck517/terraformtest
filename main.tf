@@ -29,10 +29,10 @@ output "PR_NUMBER" {
   value       = "var.PR_NUMBER"
 }
 
-resource "aws_dynamodb_table" "dynamo_test" {
-  name           = "dynamo_test-PR-${var.PR_NUMBER}"
-  read_capacity  = 20
-  write_capacity = 20
+resource "aws_dynamodb_table" "academy_table" {
+  name           = "academy_table-PR-${var.PR_NUMBER}"
+  read_capacity  = 4
+  write_capacity = 4
   hash_key       = "ID"
 
   attribute {
@@ -41,3 +41,15 @@ resource "aws_dynamodb_table" "dynamo_test" {
   }
 }
 
+resource "aws_dynamodb_table" "prospect_table" {
+  name           = "prospect_table-PR-${var.PR_NUMBER}"
+  read_capacity  = 4
+  write_capacity = 4
+
+  hash_key       = "ID"
+
+  attribute {
+    name = "ID"
+    type = "S"
+  }
+}
